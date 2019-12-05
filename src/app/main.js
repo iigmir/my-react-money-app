@@ -1,17 +1,21 @@
 import React from "react";
 import MoneyForm from "./Form.js";
+import MoneyTable from "./MoneyTable.js";
 
-class App extends React.Component {
-    constructor(props) {
+class App extends React.Component
+{
+    constructor(props)
+    {
         super(props);
         this.state = {
-            all_stores: []
+            list: [{ name: "Example", amount: 10, amount_type: 0 }]
         };
     }
-    emit_parent( object = { name: "Example", amount: 10, amount_type: 0 }) {
-        let array = [ ...this.state.all_stores ];
+    emit_parent( object = { name: "Example", amount: 10, amount_type: 0 })
+    {
+        let array = [ ...this.state.list ];
         array.push( object );
-        this.setState({ all_stores: array });
+        this.setState({ list: array });
     }
     render() {
         return (
@@ -19,6 +23,8 @@ class App extends React.Component {
                 <h1 className="ts center aligned header">Money app</h1>
                 <div className="ts container">
                     <MoneyForm emit_parent={ this.emit_parent.bind(this) } />
+                    <div className="ts divider"></div>
+                    <MoneyTable list={ this.state.list } />
                 </div>
             </div>
         );
