@@ -8,9 +8,6 @@ class MoneyForm extends React.Component {
                 amount: 10,
                 amount_type: 0
             };
-        
-            this.change_state = this.change_state.bind(this);
-            this.sent_info = this.sent_info.bind(this);
         }
 
         change_state({ state_name, event }) {
@@ -18,15 +15,15 @@ class MoneyForm extends React.Component {
             object[ state_name ] = event.target.value;
             this.setState( object );
         }
-    
-        sent_info(event) {
-            console.log( this.state );
+
+        sent_info = (event) => {
             event.preventDefault();
+            this.props.emit_parent(this.state);
         }
 
         render() {
             return (
-                <form className="ts form" onSubmit={ this.handleSubmit }>
+                <form className="ts form" onSubmit={ this.sent_info }>
                     <h2 className="ts dividing header">Money info</h2>
                     <div className="field">
                         <label>Info</label>
@@ -38,7 +35,7 @@ class MoneyForm extends React.Component {
                                 <input type="text" placeholder="Amount" value={ this.state.amount } onChange={ event => this.change_state({ state_name: 'amount', event }) } />
                             </div>
                             <div className="seven wide field">
-                            <select value={ this.state.amount_type }>
+                            <select value={ this.state.amount_type }  onChange={ event => this.change_state({ state_name: 'amount_type', event }) } >
                                 <option value="0">Expense</option>
                                 <option value="1">Income</option>
                             </select>
