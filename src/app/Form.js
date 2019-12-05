@@ -19,7 +19,7 @@ class MoneyForm extends React.Component {
         sent_info = (event) =>
         {
             event.preventDefault();
-            this.props.emit_parent(this.state);
+            this.props.add_item(this.state);
         }
 
         render() {

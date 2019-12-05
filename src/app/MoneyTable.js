@@ -8,10 +8,9 @@ class MoneyTable extends React.Component
         this.state = {};
     }
 
-    delete_info = index =>
+    delete_item = index =>
     {
-        debugger;
-        console.log( index );
+        this.props.delete_item( index );
     }
 
     shouldComponentUpdate(next_props)
@@ -41,7 +40,7 @@ class MoneyTable extends React.Component
                         <td>{ item.name }</td>
                         <td>{ type_render( item.type ) }</td>
                         <td>{ item.amount }</td>
-                        <td> <i className="remove icon" onClick={ () => this.delete_info(index) }></i> </td>
+                        <td> <i className="remove icon" onClick={ () => this.delete_item(index) }></i> </td>
                     </tr>
                 );
             })
