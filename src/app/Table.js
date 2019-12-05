@@ -40,7 +40,7 @@ class MoneyTable extends React.Component
                     <tr key={ index }>
                         <td>{ index_render( index ) }</td>
                         <td>{ item.name }</td>
-                        <td>{ type_render( item.type ) }</td>
+                        <td>{ type_render( item.amount_type ) }</td>
                         <td>{ item.amount }</td>
                         <td> <i className="remove icon" onClick={ () => this.delete_item(index) }></i> </td>
                     </tr>
