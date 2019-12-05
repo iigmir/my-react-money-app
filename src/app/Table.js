@@ -48,23 +48,17 @@ class MoneyTable extends React.Component
             })
         };
         const tfoot_render = list => {
-            const total_exp = list => {
-                const lst = list.filter( item => item.amount_type === 0 );
-                if( lst.length < 1 ) { return 0; }
-                return lst.map( prop => prop.amount ).reduce( (x, y) => x + y );
-            };
-            const total_inc = list => {
-                const lst = list.filter( item => item.amount_type === 1 );
-                if( lst.length < 1 ) { return 0; }
-                return lst.map( prop => prop.amount ).reduce( (x, y) => x + y );
-            };
+            const sum_array = lst => lst.length > 0 ? lst.map( prop => prop.amount ).reduce( (x, y) => x + y ) : 0;
+            const total_income = list => sum_array( list.filter( item => item.amount_type === 1 ) );
+            const total_expense = list => sum_array( list.filter( item => item.amount_type === 0 ) );
+            const sum_up = (inc, exp) => inc - exp;
             return (
                 <tr>
-                    <th>Total income:{ total_inc( list ) }</th>
-                    <th>Total expense:{ total_exp( list ) }</th>
-                    <th>未到人數：3</th>
-                    <th>未到人數：3</th>
-                    <th>未到人數：3</th>
+                    <th></th>
+                    <th></th>
+                    <th>Total income: { total_income( list ) }</th>
+                    <th>Total expense: { total_expense( list ) }</th>
+                    <th>Sum: { sum_up( total_income( list ), total_expense( list ) ) }</th>
                 </tr>
             );
         };
