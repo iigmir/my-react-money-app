@@ -10,9 +10,14 @@ class MoneyForm extends React.Component {
             };
         }
 
-        change_state({ state_name, event }) {
+        change_state({ state_name, event })
+        {
             let object = {};
             object[ state_name ] = event.target.value;
+            if( state_name === "amount_type" )
+            {
+                object.amount_type = parseInt( object.amount_type, 2 );
+            }
             this.setState( object );
         }
 
