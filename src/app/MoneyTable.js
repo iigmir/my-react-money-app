@@ -14,6 +14,11 @@ class MoneyTable extends React.Component
         return different_table;
     }
 
+    delete_info = index =>
+    {
+        console.log( index );
+    }
+
     render() {
         const th_render = () => (
             <tr>
@@ -24,27 +29,30 @@ class MoneyTable extends React.Component
                 <th>Delete</th>
             </tr>
         );
-        const td_render = list => list.map( (item, index) =>
-        {
-            const index_render = id => id + 1;
-            const type_render = id => id === 1 ? "Income" : "Expense";
-            return (
-                <tr key={ index }>
-                    <td>{ index_render( index ) }</td>
-                    <td>{ item.name }</td>
-                    <td>{ type_render( item.type ) }</td>
-                    <td>{ item.amount }</td>
-                    <td> <i className="remove icon"></i> </td>
-                </tr>
-            );
-        });
+        const td_render = (list, callback) => {
+            const father_event = input => callback( input );
+            return list.map( (item, index) =>
+            {
+                const index_render = id => id + 1;
+                const type_render = id => id === 1 ? "Income" : "Expense";
+                return (
+                    <tr key={ index }>
+                        <td>{ index_render( index ) }</td>
+                        <td>{ item.name }</td>
+                        <td>{ type_render( item.type ) }</td>
+                        <td>{ item.amount }</td>
+                        <td> <i className="remove icon" onClick={ father_event( index ) }></i> </td>
+                    </tr>
+                );
+            })
+        };
         return (
             <table className="ts table">
                 <thead>
                     { th_render() }
                 </thead>
                 <tbody>
-                    { td_render( this.props.list ) }
+                    { td_render( this.props.list, this.delete_info ) }
                 </tbody>
                 <tfoot>
                     <tr>
