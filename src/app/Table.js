@@ -21,7 +21,7 @@ class MoneyTable extends React.Component
 
     render()
     {
-        const th_render = () => (
+        const thead_render = () => (
             <tr>
                 <th>#</th>
                 <th>Name</th>
@@ -30,7 +30,7 @@ class MoneyTable extends React.Component
                 <th>Delete</th>
             </tr>
         );
-        const td_render = list =>
+        const tbody_render = list =>
         {
             return list.map( (item, index) =>
             {
@@ -47,19 +47,32 @@ class MoneyTable extends React.Component
                 );
             })
         };
+        const tfoot_render = list => {
+            const total_exp = list => {
+                const lst = list.filter( item => item.amount_type === 0 );
+                if( lst.length < 1 ) { return 0; }
+                return lst.map( prop => prop.amount ).reduce( (x, y) => x + y );
+            };
+            const total_inc = list => {
+                const lst = list.filter( item => item.amount_type === 1 );
+                if( lst.length < 1 ) { return 0; }
+                return lst.map( prop => prop.amount ).reduce( (x, y) => x + y );
+            };
+            return (
+                <tr>
+                    <th>Total income:{ total_inc( list ) }</th>
+                    <th>Total expense:{ total_exp( list ) }</th>
+                    <th>未到人數：3</th>
+                    <th>未到人數：3</th>
+                    <th>未到人數：3</th>
+                </tr>
+            );
+        };
         return (
             <table className="ts table">
-                <thead>
-                    { th_render() }
-                </thead>
-                <tbody>
-                    { td_render( this.props.list ) }
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th colSpan="3">未到人數：3</th>
-                    </tr>
-                </tfoot>
+                <thead>{ thead_render() }</thead>
+                <tbody>{ tbody_render( this.props.list ) }</tbody>
+                <tfoot>{ tfoot_render( this.props.list ) }</tfoot>
             </table>
         );
     }
