@@ -19,7 +19,8 @@ class MoneyTable extends React.Component
         return different_table;
     }
 
-    render() {
+    render()
+    {
         const th_render = () => (
             <tr>
                 <th>#</th>
@@ -29,7 +30,8 @@ class MoneyTable extends React.Component
                 <th>Delete</th>
             </tr>
         );
-        const td_render = list => {
+        const td_render = list =>
+        {
             return list.map( (item, index) =>
             {
                 const index_render = id => id + 1;

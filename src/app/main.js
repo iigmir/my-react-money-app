@@ -1,6 +1,6 @@
 import React from "react";
 import MoneyForm from "./Form.js";
-import MoneyTable from "./MoneyTable.js";
+import MoneyTable from "./Table.js";
 
 class App extends React.Component
 {
