@@ -8,15 +8,16 @@ class MoneyTable extends React.Component
         this.state = {};
     }
 
+    delete_info = index =>
+    {
+        debugger;
+        console.log( index );
+    }
+
     shouldComponentUpdate(next_props)
     {
         const different_table = this.props.list !== next_props.list;
         return different_table;
-    }
-
-    delete_info = index =>
-    {
-        console.log( index );
     }
 
     render() {
@@ -29,8 +30,7 @@ class MoneyTable extends React.Component
                 <th>Delete</th>
             </tr>
         );
-        const td_render = (list, callback) => {
-            const father_event = input => callback( input );
+        const td_render = list => {
             return list.map( (item, index) =>
             {
                 const index_render = id => id + 1;
@@ -41,7 +41,7 @@ class MoneyTable extends React.Component
                         <td>{ item.name }</td>
                         <td>{ type_render( item.type ) }</td>
                         <td>{ item.amount }</td>
-                        <td> <i className="remove icon" onClick={ father_event( index ) }></i> </td>
+                        <td> <i className="remove icon" onClick={ () => this.delete_info(index) }></i> </td>
                     </tr>
                 );
             })
@@ -52,7 +52,7 @@ class MoneyTable extends React.Component
                     { th_render() }
                 </thead>
                 <tbody>
-                    { td_render( this.props.list, this.delete_info ) }
+                    { td_render( this.props.list ) }
                 </tbody>
                 <tfoot>
                     <tr>
