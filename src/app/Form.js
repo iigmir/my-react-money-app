@@ -30,7 +30,6 @@ class MoneyForm extends React.Component {
         render() {
             return (
                 <form className="ts form" onSubmit={ this.sent_info }>
-                    <h2 className="ts dividing header">Money info</h2>
                     <div className="field">
                         <label>Info</label>
                         <div className="fields">

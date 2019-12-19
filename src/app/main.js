@@ -32,8 +32,9 @@ class App extends React.Component
             <div className="App">
                 <h1 className="ts center aligned header">Money app</h1>
                 <div className="ts container">
+                    <h2 className="ts dividing header">Insert info</h2>
                     <MoneyForm add_item={ this.add_item.bind(this) } />
-                    <div className="ts divider"></div>
+                    <h2 className="ts dividing header">Info table</h2>
                     <MoneyTable list={ this.state.list } delete_item={ this.delete_item.bind(this) } />
                 </div>
             </div>
