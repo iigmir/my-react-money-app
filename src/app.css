@@ -2,3 +2,30 @@ i.icon
 {
     cursor: pointer;
 }
+
+@media (prefers-color-scheme: dark)
+{
+    .ts.header,
+    h1:not(.unstyled):not(.ts), h2:not(.unstyled):not(.ts),
+    h3:not(.unstyled):not(.ts), h4:not(.unstyled):not(.ts),
+    h5:not(.unstyled):not(.ts), h6:not(.unstyled):not(.ts),
+    .ts.form .field > label
+    {
+        color: #eae7af;
+    }
+    html,
+    .ts.input input, .ts.input textarea, .ts.input [contenteditable],
+    .ts.form input, .ts.form textarea, .ts.form [contenteditable],
+    .ts.basic.dropdown, .ts.form select,
+    .ts.button,
+    .ts.table thead th, .ts.table tbody td, .ts.table tfoot th
+    {
+        background-color: #200f21;
+        color: #eae7af;
+    }
+    .ts.button:not(.visible):not(.hidden):not(.active):not(:active):not(.opinion):hover
+    {
+        background-color: #241663;
+        color: #a72693;
+    }
+}
