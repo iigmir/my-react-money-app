@@ -49,7 +49,14 @@ class MoneyTable extends React.Component
         };
         const tfoot_render = list =>
         {
-            const sum_array = lst => lst.length > 0 ? lst.map( prop => prop.amount ).reduce( (x, y) => x + y ) : 0;
+            const sum_array = lst =>
+            {
+                if ( lst.length > 0 )
+                {
+                    return lst.map( prop => prop.amount ).reduce( (x, y) => parseInt(x, 10) + parseInt(y, 10) );
+                }
+                return 0;
+            };
             const total_income = list => sum_array( list.filter( item => item.amount_type === 1 ) );
             const total_expense = list => sum_array( list.filter( item => item.amount_type === 0 ) );
             const sum_up = (inc, exp) => inc - exp;

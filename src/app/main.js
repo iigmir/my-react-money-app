@@ -8,7 +8,7 @@ class App extends React.Component
     {
         super(props);
         this.state = {
-            list: [{ name: "Example", amount: 10, amount_type: 0 }],
+            list: [],
         };
     }
 
